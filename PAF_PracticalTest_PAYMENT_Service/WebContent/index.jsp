@@ -33,7 +33,7 @@
 		<div class="row">
 			<div class="col-6">
 				<h1>Payments Management</h1>
-				<form id="formOrd" name="formOrd">
+				<form id="formPay" name="formPay">
 				
 					
 						<br> Select your CardNumber: <input id="cardnumber" name="cardnumber" type="text"

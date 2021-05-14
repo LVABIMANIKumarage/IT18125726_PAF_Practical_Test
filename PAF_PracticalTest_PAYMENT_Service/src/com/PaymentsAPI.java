@@ -43,11 +43,9 @@ public class PaymentsAPI extends HttpServlet {
 		int CNO = Integer.parseInt(request.getParameter("cardnumber"));
 	    String Pname=request.getParameter("name").toString();
 	    int pcvc = Integer.parseInt(request.getParameter("cvc"));
-	    
 	    int pamount = Integer.parseInt(request.getParameter("amount"));
 	    String stringdate=request.getParameter("datepicker").toString();
 	    int Poid = Integer.parseInt(request.getParameter("oid"));
-	    
 	    
 	   	    
 		 String output = PayObj.addPayment(CNO,Pname,pcvc,pamount,stringdate,Poid);
@@ -67,11 +65,14 @@ public class PaymentsAPI extends HttpServlet {
 		
 		Map paras = getParasMap(request);
 		
-		String CalenderDate =  paras.get("datepicker").toString().replace("%2F", "-");
-		int CVC = Integer.parseInt(paras.get("cvc").toString());
+		int buttonID=Integer.parseInt(paras.get("hidPayIDSave").toString());
 		int CNO = Integer.parseInt(paras.get("cardnumber").toString());
 		String NAME = request.getParameter("name").toString();
-		int buttonID=Integer.parseInt(paras.get("hidPayIDSave").toString());
+		String CalenderDate =  paras.get("datepicker").toString().replace("%2F", "-");
+		int CVC = Integer.parseInt(paras.get("cvc").toString());
+		
+		
+		
 		int orderID=Integer.parseInt(paras.get("oid").toString());
 		int Amount = Integer.parseInt(paras.get("amount").toString());
 	    

@@ -41,7 +41,8 @@ public class Payments {
                              +"<th>Name on Card</th>"
                              +"<th>cvc</th>"
                              +"<th>amount</th>"
-                             +"<th>pdate</th>"
+                             +"<th>"
+                             + "Update</th>"
 					 		+"<th>Order ID</th>"+
                              "<th>Update</th>"
 					 		+ "<th>Remove</th></tr>";
@@ -57,7 +58,7 @@ public class Payments {
 			 
 			while(rs.next()) {
 				int PayID = rs.getInt("payment_id");
-				int cno = rs.getInt("Card_number");
+				int cno = rs.getInt("card_number");
                 String name = rs.getString("name");
 				int cvc = rs.getInt("cvc");
                 int amount = rs.getInt("amount");
@@ -120,41 +121,12 @@ public String addPayment(int cno,String name,int cvc,int amount,String pday,int 
 				e.printStackTrace();
 			}  
 			
-			//Query for count AppId for duplicate date & time for same date and Project
-//			String checkQuery = "select count(order_id)  from orders where project_project_id = ? ";
-//			PreparedStatement preparedstatement = con.prepareStatement(checkQuery);
+
 
 			
 			java.sql.Date sDate = new java.sql.Date(startDate.getTime());
 			
-//			preparedstatement.setInt(1, pid);
-//			//preparedstatement.setString(2, day);
-//			ResultSet newresultset = preparedstatement.executeQuery();
-//			newresultset.next();
 
-			
-			//convert count Order ids to integer  
-//			int value = Integer.parseInt(newresultset.getObject(1).toString());
-//			
-//			if(value !=0)
-//			{
-//				output = "{\"status\":\"error\", \"data\":" + " \"The particular project  has been ordered please choose another project.\"}";
-//				
-//				
-//			}
-//			else {
-//				//check date is before current date 
-//				
-//				SimpleDateFormat  simpledateformat = new SimpleDateFormat("yyyy-MM-dd");
-//				Date date = new Date(System.currentTimeMillis());
-//
-//				if(startDate.compareTo(date)<0) {
-//					
-//				output = "{\"status\":\"error\", \"data\":" + " \"You cannot request past dates as orders dates please select a future date.\"}";
-//				
-//				}
-//				
-//				else {
 					
 			String insertPayQuery = " insert into payment (card_number,name,cvc,amount,pdate,order_id) values (?, ?, ?, ?, ?, ?)";
 			PreparedStatement pstmnt = con.prepareStatement(insertPayQuery);
@@ -179,10 +151,12 @@ public String addPayment(int cno,String name,int cvc,int amount,String pday,int 
 			
 		}
 		catch(SQLException e){
-			output = "{\"status\":\"error\", \"data\":" + " \"Error while inserting the Payments.\"}";
-			
+			output = "{\"status\":\"error\", \"data\": \"Error while inserting the Payments.\"}";
+			System.err.println(e.getMessage());
 		}
+		
 		return output;
+		
 	}
 
 public String UpdatePayments( int PayID,int cno,String name,int cvc,int amount,String pday,int oid)  {
@@ -210,49 +184,7 @@ public String UpdatePayments( int PayID,int cno,String name,int cvc,int amount,S
 		
 		  
 		
-//		// get doctor id and hospital id for given appointment id
-//			String getproIDQuery = "SELECT project_project_id  FROM orders WHERE order_id = ?";
-//		
-//		
-//		PreparedStatement preparedstatement = con.prepareStatement(getproIDQuery);
-//		
-//		preparedstatement.setInt(1,OrdID);
-//		
-//	
-//		ResultSet newresultset = preparedstatement.executeQuery();
-//		
-//		
-//		newresultset.next();
-//		
-//	// Assign into variable
-//
-//			int pid = newresultset.getInt("project_project_id");
-//		
-//		// get Count of given info
-//			String checkQuery = "select count(order_id)  from orders where date = ?   and project_project_id = ?";
-//			PreparedStatement prstmnt = con.prepareStatement(checkQuery);
-//		
-//		java.sql.Date date1 = new java.sql.Date(startDate2.getTime());
-//		
-//		prstmnt.setString(4, day);
-//	    prstmnt.setInt(3, pid);
-//		
-//		ResultSet newresultset2 = prstmnt.executeQuery();
-//		
-//		newresultset2.next();
-//		
-//		//convert count into integer
-//		int value = Integer.parseInt(newresultset2.getObject(1).toString());
-//		
-//		
-//		if(value !=0)
-//		{
-//			output = "{\"status\":\"error\", \"data\":" + "\"The particular project has been reserved please choose another project..\"}";
-//			
-//			
-//		}
-//		
-//		else {
+
 		
 			String updatePayQuery = "UPDATE payment SET card_number=?,name=?,cvc=?,amount=?,pdate=?,order_id=? WHERE payment_id=?";
 

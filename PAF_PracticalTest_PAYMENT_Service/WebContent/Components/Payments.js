@@ -13,7 +13,7 @@ $(document).on("click", "#btnSave", function(event) {
 	$("#alertError").hide();
 
 	// Form validation-------------------
-	var status = validateOrdForm();
+	var status = validatePayForm();
 	if (status != true) {
 		$("#alertError").text(status);
 		$("#alertError").show();
@@ -115,7 +115,7 @@ function onPayDeleteComplete(response, status) {
 }
 
 // CLIENTMODEL=========================================================================
-function validateOrdForm() {
+function validatePayForm() {
 	// Customer Number-------------------------------
 	if ($("#cardnumber").val().trim() == "") {
 		return "Insert your card Number.";
