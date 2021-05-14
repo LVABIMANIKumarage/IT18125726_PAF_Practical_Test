@@ -132,7 +132,7 @@ public String addPayment(int cno,String name,int cvc,int amount,String pday,int 
 			PreparedStatement pstmnt = con.prepareStatement(insertPayQuery);
 			
 			java.sql.Date sDate2 = new java.sql.Date(startDate.getTime());
-			        pstmnt.setString(5, "2021-05-12");
+			        pstmnt.setString(5, pday);
 			        pstmnt.setInt(1, cno);
 					pstmnt.setString(2, name);
 					pstmnt.setInt(3, cvc);
